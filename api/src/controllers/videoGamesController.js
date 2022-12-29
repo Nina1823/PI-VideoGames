@@ -36,7 +36,7 @@ module.exports = {
                 "id": juego.id,
                 "nombre": juego.name,
                 "imagen": juego.background_image,
-                "genero": encontrarGeneros()
+                "generos": encontrarGeneros()
             })
         })
         if (name) {
@@ -54,43 +54,74 @@ module.exports = {
 
     busquedaPorId: async function (id) {
         let todosJuego = await this.TodosLosJuegos();
+        let filtrado =[];
         let infoJuego = [];
         if (id.length > 6) { //corresponde a los id de la bd
         } else {
             id = parseInt(id)
         }
         //filtrado del videogame exista dentro de los primeros 100
-        let filtrado = todosJuego.filter((juego) => juego.id === id
-        )
+        filtrado = todosJuego.filter( (juego) => juego.id === id )
         if (filtrado.length) {
             let infoApi = await axios.get(url + "/" + id + "?key=" + API);
-            const infoId = {
+
+            function encontrarGeneros() {
+                let resultGen = [];
+                infoApi.data.genres.map((genero) => resultGen.push({
+                    "id": genero.id,
+                    "nombre": genero.name
+                }))
+                return resultGen;
+            }
+
+            function encontrarPlataforma() {
+                let resulPlataforma = [];
+                infoApi.data.platforms.map((plataforma) => resulPlataforma.push({
+                    "id": plataforma.platform.id,
+                    "nombre": plataforma.platform.name
+                }))
+                return resulPlataforma;
+            }
+
+            let infoId = {
+                "id": infoApi.data.id,
                 "nombre": infoApi.data.name,
-                "imagen": infoApi.data.background_image,
-                "genero": infoApi.data.genres,
+                "descripcion": infoApi.data.description,
+                "generos": encontrarGeneros(),
                 "lanzamiento": infoApi.data.released,
-                "rating": infoApi.data.rating,
-                "plataformas": infoApi.data.platform
+                "calificacion": infoApi.data.rating,
+                "plataformas": encontrarPlataforma(),
+                "imagen": infoApi.data.background_image
             }
             infoJuego.push(infoId);
+            return infoJuego;
+        } else {
+            throw new Error("No existe el videojuego con id :  " + id)
         }
-        return infoJuego;
     },
-        
-    // crearNuevoJuego: async function(nuevo){
-    //     const { name, description, FechaLanzamiento, Rating, plataformas, img,genres } = nuevo;
-    //     nuevo.Rating ? nuevo.Rating = parseFloat(Rating): nuevo.Rating = 0.0
-    //     if(img.length === 0){ //sino me pasan img le ponemos esta x2
-    //         nuevo.img = "https://www.curn.edu.co/images/ZARINA.jpg"; 
-    //     }
-    //     if(!name || !description || !plataformas){ //destruc para poder usar aqui
-    //         throw new Error("No se puede crear videoJuego, ingresar los datos faltantes")
-    //     }else{
-    //         const crearJuego = await Videogame.create(nuevo)
-    //     }
-    // }
 
-
+    crearNuevoJuego: async function(nuevo){
+        const { nombre, descripcion, lanzamiento, calificacion, plataformas, imagen,genres } = nuevo;
+        nuevo.calificacion ? nuevo.calificacion = parseFloat(calificacion): nuevo.calificacion = 0.0
+        if(imagen.length === 0){ //sino me pasan img le ponemos esta x2
+            nuevo.imagen = "https://www.curn.edu.co/images/ZARINA.jpg"; 
+        }
+        if(!nombre || !descripcion || !plataformas){ //destruc para poder usar aqui
+            throw new Error("No se puede crear videoJuego, ingresar los datos faltantes")
+        }else{
+            const crearJuego = await Videogame.create(nuevo)
+            if(genres){
+                genres.forEach(async genero=>{ //genres el que mandan por body
+                    let todosGenerosTabla= await Genero.findAll()
+                    
+                    //me busca le id en la tabla de genero y me lo compara con el del id body gnres, si su respuesta coinside, 
+                    //me llena la tabla intermedia 
+                    todosGenerosTabla.find((gen) => gen.nombre == genero ? crearJuego.addGeneros(gen.id): false) 
+                })
+            }
+        return ("¡ Se creó tu juego con éxito !")
+        }
+    }
 }
 
 

@@ -1,14 +1,30 @@
 require('dotenv').config();//lee los env
 const axios = require("axios");
-const {  Genero } = require("../db");
-const { API } = process.env;
-const url ="https://api.rawg.io/api/genres?key=38d8c9f40913477f9d90b528468c050f";
+const { API } = process.env;// me traigo la key
+const { Genero } = require("../db");
+const url = "https://api.rawg.io/api/genres";
 
-const traerId = async ()=>{
-    const generos= await axios.get(url);
-    let respuesta=[];
-    generos.data.results.map(gen=>{
+//guardar los generos en la bd
+module.exports = {
+    guardarGenerosBd: async function () {
+        let info = [];
+        const generoUrl = await axios.get(url + "?key=" + API);
 
-    })
-
+        generoUrl.data.results.map(async cbgen => {
+            let guardar = {
+                "id": cbgen.id,
+                "nombre": cbgen.name
+            }
+            info.push(guardar);
+            await Genero.findOrCreate({
+                where: {
+                    id: guardar.id, //comparacion con lo que hay en la tabla : var 
+                    nombre: guardar.nombre
+                }
+            });
+        })
+        
+        
+        return info;
+    }
 }

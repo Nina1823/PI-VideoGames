@@ -10,27 +10,27 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey:true
     },
-    name:{
+    nombre:{
       type:DataTypes.STRING,
       allowNull:false
     },
-    description:{
+    descripcion:{
       type:DataTypes.STRING,
       allowNull:false
     },
-    FechaLanzamiento:{
+    lanzamiento:{
       type:DataTypes.STRING,
       allowNull:true
     },
-    Rating:{
+    calificacion:{
       type: DataTypes.STRING,
       allowNull:true
     },
     plataformas:{
-      type:DataTypes.STRING,
+      type:DataTypes.ARRAY(DataTypes.STRING),
       allowNull:false
     },
-    img:{
+    imagen:{
       type:DataTypes.STRING,
       defaultValue: "https://www.curn.edu.co/images/ZARINA.jpg",
       validate:{isUrl:true}
