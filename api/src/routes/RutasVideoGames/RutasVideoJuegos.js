@@ -7,7 +7,8 @@ router.get("/", async (req,res)=>{
   
     try {
         if(name){
-            return res.status(200).send("Me mandó name");
+            const resultado= await videoGamesController.TodosLosJuegos(name);
+            return res.status(200).json(resultado);
         }else{
             const resultado = await videoGamesController.TodosLosJuegos();
             return res.status(200).json(resultado);
@@ -31,6 +32,7 @@ router.get("/:id",(req,res)=>{
 })
 
 // router.post("/",(req,res)=>{
+//     const nuevo = req.body;
 //     try {
         
 //     } catch (error) {
