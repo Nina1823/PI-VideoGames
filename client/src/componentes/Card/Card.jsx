@@ -1,11 +1,23 @@
 import React from "react";
 import Estilo from "./Card.module.css"
+import {Link} from "react-router-dom"
 
-const Card = () => {
+const Card = ({item}) => {
     return (
-        <div>
-          
-        </div>
+       <Link>
+        <h2>
+            {item.nombre}
+        </h2>
+        <img src={item.imagen} alt={item.nombre} />
+        {
+            item.generos.map(gen=>{
+                return(
+                    <div key={gen.id}>{gen.nombre}</div>
+                )
+
+            })
+        }
+       </Link>
     )
 }
 
