@@ -1,7 +1,8 @@
-import { TODOS_JUEGOS, ERROR } from "../actions/actions";
+import { TODOS_JUEGOS, ERROR, BUSCAR_JUEGO } from "../actions/actions";
 const initialState = {
     videoJuegos: [],
     error:"",
+    
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -16,6 +17,13 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload
             }
+        case BUSCAR_JUEGO: 
+            return{
+                ...state,
+                videoJuegos:action.payload //para que muestre en el mismo lugar
+                
+            }
+        
         default:
             return { ...state };
     }

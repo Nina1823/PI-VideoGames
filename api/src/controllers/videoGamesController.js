@@ -28,20 +28,20 @@ module.exports = {
                 let resultGen = [];
                 juego.genres.map((genero) => resultGen.push({
                     "id": genero.id,
-                    "nombre": genero.name
+                    "nombre": genero.name.toLowerCase()
                 }))
                 return resultGen;
             }
             necesario.push({
                 "id": juego.id,
-                "nombre": juego.name,
+                "nombre": juego.name.toLowerCase(),
                 "imagen": juego.background_image,
                 "generos": encontrarGeneros()
             })
         })
         if (name) {
 
-            info = necesario.filter(juego => juego.nombre === name)
+            info = necesario.filter(juego => juego.nombre === name.toLowerCase())
             if (info.length > 0) {
                 return info;
             } else {

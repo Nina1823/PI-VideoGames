@@ -13,7 +13,7 @@ module.exports = {
         generoUrl.data.results.map(async cbgen => {
             let guardar = {
                 "id": cbgen.id,
-                "nombre": cbgen.name
+                "nombre": cbgen.name.toLowerCase()
             }
             info.push(guardar);
             await Genero.findOrCreate({

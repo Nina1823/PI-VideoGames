@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 
 const Card = ({item}) => {
     return (
-       <Link>
+       <Link to={`/home/${item.id}`}> 
         <h2>
             {item.nombre}
         </h2>
