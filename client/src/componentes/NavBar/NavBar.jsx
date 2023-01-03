@@ -8,11 +8,10 @@ import { busquedaJuego, todosJuegos } from "../../Redux/actions/actions";
 const NavBar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [nombre, setNombre] = useState("")
+    const [nombre, setNombre] = useState("") //UseState estado local
     const changeHandler = (event) => {
         const dato = event.target.value // se me copia el valor del que esta buscando
         setNombre(dato)
-
     }
     const submitHandler = (event) => {
         dispatch(busquedaJuego(nombre))
@@ -41,7 +40,6 @@ const NavBar = () => {
         </div>
         //filtrado--home
         //formulario
-        //detalle 
         //paginado
 
     )

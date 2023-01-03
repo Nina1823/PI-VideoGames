@@ -16,12 +16,10 @@ function App() {
         <Home/>
       </Route>
 
-      <Route exact path="/home/:id">  
-        <Detalle/>
+      <Route exact path="/home/:id" component={Detalle}>  
       </Route>
 
-      <Route exact path="/formulario">
-        <Formulario/>
+      <Route exact path="/formulario" component={Formulario}>
       </Route>
     </div>
   );
