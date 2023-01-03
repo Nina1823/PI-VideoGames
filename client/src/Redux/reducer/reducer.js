@@ -1,4 +1,4 @@
-import { TODOS_JUEGOS, ERROR, BUSCAR_JUEGO, DETALLE_JUEGO, TODOS_GENEROS, FILTRADO_GENERO } from "../actions/actions";
+import { TODOS_JUEGOS, ERROR, BUSCAR_JUEGO, DETALLE_JUEGO, TODOS_GENEROS, FILTRADO_GENERO, FILTRADO_BD, FILTRADO_NOMBRE, FILTRADO_CALIFICACION } from "../actions/actions";
 const initialState = {
     videoJuegos: [],
     error: "",
@@ -39,15 +39,74 @@ const rootReducer = (state = initialState, action) => {
             const todosJuegosFG = [...state.videoJuegos];
             let juegosPorGenero = [];
             todosJuegosFG.forEach((juego) => {
-                juego.generos.forEach(genero =>genero.nombre === action.payload ? juegosPorGenero.push(juego) : false
+                juego.generos.forEach(genero => genero.nombre === action.payload ? juegosPorGenero.push(juego) : false
                 )
-               
+
             })
             return {
                 ...state,
                 videoJuegos: juegosPorGenero,
                 error: juegosPorGenero.length > 0 ? false : `No existe ningun videojuego con el genero ${action.payload}` //si hay algo en el arr no haga nah
                 // y sinó pos error
+            }
+        case FILTRADO_BD:
+            const todosJuegosFDB = [...state.videoJuegos]; //filtrado por bd
+            //: sino pide por los de la api, hacer un filtrado de los que no tienen la propiedad de createdInDb
+            //: entonces me estan pidiendo por los de la api
+            let juegosPorBd = action.payload === "creados" ? todosJuegosFDB.filter((juego) => juego.createdInDb) : todosJuegosFDB.filter((juego) => !juego.createdInDb) // ! que no tiene la propiedad createInDb
+
+            return {
+                ...state,
+                videoJuegos: action.payload === "todos" ? todosJuegosFDB : juegosPorBd,
+                error: juegosPorBd.length > 0 ? false : `No se han creado Videojuegos en la base de datos`
+            }
+
+        case FILTRADO_NOMBRE:
+            const todosJuegosFN = [...state.videoJuegos];
+            const filtradoNombre = action.payload === "ascendente" ? todosJuegosFN.sort((a, b) => {
+                if (a.nombre > b.nombre) {
+                    return 1;
+                }
+                if (b.nombre > a.nombre) {
+                    return -1
+                }
+                return 0
+
+            }) : todosJuegosFN.sort((a, b) => { //ya que es descendente 
+                if (a.nombre > b.nombre) {
+                    return -1;
+                }
+                if (b.nombre > a.nombre) {
+                    return 1
+                }
+                return 0
+            })
+            return {
+                ...state,
+                videoJuegos: filtradoNombre
+            }
+        case FILTRADO_CALIFICACION:
+            const todosJuegoFR = [...state.videoJuegos];
+            const filtradoCalificacion = action.payload === "mejor" ? todosJuegoFR.sort((a, b) => {
+                if (a.calificacion > b.calificacion) {
+                    return -1;
+                }
+                if (b.calificacion > a.calificacion) {
+                    return 1;
+                }
+                return 0;
+            }) : todosJuegoFR.sort((a, b) => {
+                if (a.calificacion > b.calificacion) {
+                    return 1;
+                }
+                if (b.calificacion > a.calificacion) {
+                    return -1;
+                }
+                return 0;
+            })
+            return {
+                ...state, 
+                videoJuegos: filtradoCalificacion
             }
 
         default:

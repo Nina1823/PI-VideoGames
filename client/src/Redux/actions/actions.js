@@ -5,7 +5,11 @@ export const BUSCAR_JUEGO ="BUSCAR_JUEGO";
 export const DETALLE_JUEGO = "DETALLE_JUEGO";
 export const ERROR = "ERROR";
 export const FILTRADO_GENERO = "FILTRADO_GENERO";
+export const FILTRADO_BD =  "FILTRADO_DB";
 export const TODOS_GENEROS = "TODOS_GENEROS";
+export const FILTRADO_NOMBRE = "FILTRADO_NOMBRE";
+export const FILTRADO_CALIFICACION = "FILTRADO_CALIFICACIONss"
+
 
 
 export const todosJuegos = () => {
@@ -63,9 +67,25 @@ export const detalleJuego = (id) => {
     }
 
 }
-
+export const filtradoBd = (payload) =>{
+    return{
+        type:FILTRADO_BD,payload
+    }
+}
 export const filtradoGenero = (payload) =>{ // lo que recibo del home, lo que solicita el cliente
     return {
         type:FILTRADO_GENERO, payload //toma lo que le mandan por parametro 
+    }
+}
+
+export const filtradoNombre = (payload) =>{
+    return{
+        type:FILTRADO_NOMBRE,payload
+    }
+}
+
+export const filtradoCalificacion = (payload) =>{
+    return {
+        type:FILTRADO_CALIFICACION, payload
     }
 }

@@ -29,6 +29,7 @@ module.exports = {
                 juego.genres.map((genero) => resultGen.push({
                     "id": genero.id,
                     "nombre": genero.name.toLowerCase()
+                    
                 }))
                 return resultGen;
             }
@@ -36,7 +37,8 @@ module.exports = {
                 "id": juego.id,
                 "nombre": juego.name.toLowerCase(),
                 "imagen": juego.background_image,
-                "generos": encontrarGeneros()
+                "generos": encontrarGeneros(),
+                "calificacion": juego.rating
             })
         })
         if (name) {
@@ -101,7 +103,7 @@ module.exports = {
     },
 
     crearNuevoJuego: async function(nuevo){
-        const { nombre, descripcion, lanzamiento, calificacion, plataformas, imagen,genres } = nuevo;
+        const { nombre, descripcion, lanzamiento, calificacion, plataformas, imagen,generos } = nuevo;
         nuevo.calificacion ? nuevo.calificacion = parseFloat(calificacion): nuevo.calificacion = 0.0
         if(imagen.length === 0){ //sino me pasan img le ponemos esta x2
             nuevo.imagen = "https://www.curn.edu.co/images/ZARINA.jpg"; 
@@ -110,8 +112,8 @@ module.exports = {
             throw new Error("No se puede crear videoJuego, ingresar los datos faltantes")
         }else{
             const crearJuego = await Videogame.create(nuevo)
-            if(genres){
-                genres.forEach(async genero=>{ //genres el que mandan por body
+            if(generos){
+                generos.forEach(async genero=>{ //genres el que mandan por body
                     let todosGenerosTabla= await Genero.findAll()
                     
                     //me busca le id en la tabla de genero y me lo compara con el del id body gnres, si su respuesta coinside, 

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"; //se levante lo que quiero hacer, state: para que hacer uso del estado global
 import Estilo from "./Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { todosGeneros, todosJuegos, filtradoGenero } from "../../Redux/actions/actions";
+import { todosGeneros, todosJuegos, filtradoGenero, filtradoBd,filtradoCalificacion,filtradoNombre } from "../../Redux/actions/actions";
 import Card from "../Card/Card";
 import NavBar from "../NavBar/NavBar";
 import Error from "../Error/Error";
+import Paginado from "./Paginado";
 
 const Home = () => {
     const dispatch = useDispatch(); //inv
@@ -13,8 +14,18 @@ const Home = () => {
     const videojuegos = useSelector(state => state.videoJuegos)
     const estadoGenero = useSelector(state => state.generos)// el estado del reducer
     const [seleccionGenero, setSeleccionGenero] = useState({ genero: [], existente: [] }); // para que se almacene el filtrado del usuario(lo que seleccionó y se deshabilite)
+    const [orden,setOrden] = useState("");
+    const [paginaActual, setPaginaActual] = useState(1);
+    const juegosPorPagina = 15;
+    const ultimoJuego = paginaActual * juegosPorPagina;
+    const primerJuego = ultimoJuego - juegosPorPagina;
+    const juegosActuales = videojuegos.slice(primerJuego,ultimoJuego) //por cada pagina muestra desde el 1ero y ultimo que haya por pagina
+    const paginado = (numeroPagina) => {
+        setPaginaActual(numeroPagina)
+    }
     let deshabilitadorSelec = !!seleccionGenero.genero.length; // si ya seleccionó un genero se vuelve true, y ya disable
-    
+    let deshabilitarOrigen = !!seleccionGenero.existente.length; //lleno true nada false
+
     useEffect(() => {
         if (videojuegos.length) {
         } else { //sino hay nah
@@ -25,20 +36,40 @@ const Home = () => {
         [dispatch, videojuegos.length]//solo verfiica los dos
     )
     const manejadorFiltradoGen = (event) => {
-        if(event.target.value==="todos"){
-            dispatch(todosJuegos()) 
-        }else{
+        if (event.target.value === "todos") {
+            dispatch(todosJuegos())
+        } else {
             event.preventDefault()
             dispatch(filtradoGenero(event.target.value))
-            setSeleccionGenero({...seleccionGenero,genero: [event.target.value]})
+            setSeleccionGenero({ ...seleccionGenero, genero: [event.target.value] }) //modiifco genero
         }
-     }
-     const eliminarGenero = (event)=>{
+    }
+    const manejadorFiltradoBd = (event) =>{
+        event.preventDefault()
+        dispatch(filtradoBd(event.target.value)) //eveneto, dispara el eveneto, valor que se seleccionó en el select (onChange)  creados/api/orgien
+        setSeleccionGenero({...seleccionGenero, existente:[event.target.value] })
+    }
+
+    const eliminarGenero = (event) => {
         event.preventDefault();
-        setSeleccionGenero({genero:[], existente:[] }) //me vacia el estado local, lo de la x
+        setSeleccionGenero({ genero: [], existente: [] }) //me vacia el estado local, lo de la x
         dispatch(todosJuegos())
 
-     }
+    }
+
+    const manejadorOrden =(event)=>{
+        event.preventDefault();
+        let valor = event.target.value;
+        if(valor==="ascendente" || valor==="descendente"){
+            dispatch(filtradoNombre(valor))    
+        }
+        if(valor=="mejor" || valor==="peor"){
+            dispatch(filtradoCalificacion(valor))
+        }
+        if(valor==="aleatorio"){
+            dispatch(todosJuegos())
+        }
+    }
     if (error) { // el estado que tiene errores esta vacio
         return (
             <>
@@ -61,8 +92,8 @@ const Home = () => {
 
                 </select>
                 {
-                    
-                    seleccionGenero.genero?.map((genero,index)=>{
+
+                    seleccionGenero.genero?.map((genero, index) => {
                         return (
                             <div key={index}>
                                 <span key={genero}>
@@ -73,16 +104,47 @@ const Home = () => {
                                 <button name={genero} onClick={event => eliminarGenero(event)}>X</button>
                             </div>
                         )
-                    })  
+                    })
                 }
+                <select defaultValue="titulo" onChange={event => manejadorFiltradoBd(event)} disabled={deshabilitarOrigen}>
+                    <option value="titulo" disabled>Origen</option>
+                    <option value="todos">Todos</option>
+                    <option value="api">Api</option>
+                    <option value="creados">Creados</option>
+                </select>
+                {
+                    seleccionGenero.existente?.map((origen,index)=>{
+                        return(
+                            <div key={index}>
+                                <span key={origen}>
+                                    {
+                                        origen[0].toUpperCase()+origen.slice(1)
+                                    }
+                                </span>
+                                <button name={origen} onClick={event =>eliminarGenero(event)}>X</button>
+                            </div>
+                        )
+                    })
+                }
+
+                <select defaultValue="titulo" onChange={event =>manejadorOrden(event)}>
+                    <option value="titulo" disabled>Ordenar</option>
+                    <option value="aleatorio">Aleatorio</option>
+                    <option value="ascendente">Ascedente</option>
+                    <option value="descendente">Descendente</option>
+                    <option value="mejor">Mejor</option> 
+                    <option value ="peor">Peor</option>
+                </select>
+                
                 <div>
                     {
-                        videojuegos.map(juego => {
+                        juegosActuales.map(juego => {
                             return <Card key={juego.id}
                                 item={juego}
                             />
                         })
                     }
+                    <Paginado juegosPorPagina={juegosPorPagina} paginaActual={paginaActual} videojuegos={videojuegos.length} paginado={paginado} />
                 </div>
             </div>
         )

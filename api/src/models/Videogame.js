@@ -34,7 +34,13 @@ module.exports = (sequelize) => {
       type:DataTypes.STRING,
       defaultValue: "https://www.curn.edu.co/images/ZARINA.jpg",
       validate:{isUrl:true}
+    },
+    createdInDb:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue:true
     }
+
   }
   ,{timestamps:false}
   );

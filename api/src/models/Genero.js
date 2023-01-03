@@ -4,7 +4,7 @@ const videogame =require('./Videogame');
 
 module.exports = (sequelize) => {
     // defino el modelo
-    sequelize.define('Genero', {
+    sequelize.define('genero', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true
