@@ -1,0 +1,37 @@
+.info{
+   
+    background-color: #a7c5d4;
+    border-radius: 2em;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    margin: 1em;
+    padding: 2em;
+    width: 50em;
+    height: 80em;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+.imagenJuego{
+    position: relative;
+     width: 25em;
+    height: 20em;
+    border-radius: 20px;
+
+  
+} 
+.btnHome{
+    background-color:  rgba(66, 96, 233, 0.7)  ;
+    border: solid 1px #ddd;
+    font-size: 1.5rem;
+    border-radius: 4rem ;
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.nomPeli{
+    font-size: 180%;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: solid;
+    border-color: aqua;
+}

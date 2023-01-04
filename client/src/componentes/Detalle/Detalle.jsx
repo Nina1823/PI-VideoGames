@@ -20,25 +20,39 @@ const Detalle = (props) => {
         return <Error></Error>
     } else if (estadoDetalle.hasOwnProperty('id') && (estadoDetalle.id === parseInt(idJuego) || estadoDetalle.id === idJuego)) {
         return (
-            <div>
-                <NavLink to="/home">Home</NavLink>
-                <img src={estadoDetalle.imagen} alt={estadoDetalle.nombre}/>
-                <span><b>Nombre:</b> {estadoDetalle.nombre}</span>
-                <h3>Descripción:</h3><p dangerouslySetInnerHTML={{__html: estadoDetalle.descripcion}}/>
+
+            <div className={Estilo.info}>
+
+                <NavLink to="/home">
+                    <button className={Estilo.btnHome}>←Regresar</button>
+                </NavLink>
+                <br />
+                <br />               
+                <span className={Estilo.nomPeli}><b>{estadoDetalle.nombre}</b></span>
+                <br />
+
+                <img className={Estilo.imagenJuego} src={estadoDetalle.imagen} alt={estadoDetalle.nombre} />
+
+                <h3>Descripción:</h3><p dangerouslySetInnerHTML={{ __html: estadoDetalle.descripcion }} />
                 <span><b>Fecha Lanzamiento:</b> {estadoDetalle.lanzamiento}</span>
+                <br />
                 <span><b>Calificación:</b> {estadoDetalle.calificacion}</span>
-                <span><b>Plataformas:</b>{estadoDetalle.plataformas.map((plataforma)=>{
+                <br />
+                <span><b>Plataformas:</b>{estadoDetalle.plataformas.map((plataforma) => {
                     return (
                         <div key={plataforma.id}>{plataforma.nombre} </div>
                     )
                 })}</span>
-                <span>Generos: {estadoDetalle.generos.map((genero)=>{
-                    return(
+                <br />
+                <span><b>Generos:</b> {estadoDetalle.generos.map((genero) => {
+                    return (
                         <div key={genero.id}>{genero.nombre}</div>
                     )
                 })}</span>
-                
+
             </div>
+            
+
         )
     } else {
         return (<h3>Cargando</h3>)

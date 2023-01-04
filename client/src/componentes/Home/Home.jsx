@@ -78,9 +78,9 @@ const Home = () => {
         )
     } else if (videojuegos.length) {
         return (
-            <div>
+            <div className={Estilo.nose}>
                 <NavBar />
-                <select defaultValue="titulo" onChange={event => manejadorFiltradoGen(event)} disabled={deshabilitadorSelec}>
+                <select className={Estilo.selectGen} defaultValue="titulo" onChange={event => manejadorFiltradoGen(event)} disabled={deshabilitadorSelec}>
                     <option value="titulo" disabled> Generos</option>
                     <option value="todos">Todos</option>
 
@@ -90,7 +90,7 @@ const Home = () => {
                         })
                     }
 
-                </select>
+                </select >
                 {
 
                     seleccionGenero.genero?.map((genero, index) => {
@@ -106,7 +106,7 @@ const Home = () => {
                         )
                     })
                 }
-                <select defaultValue="titulo" onChange={event => manejadorFiltradoBd(event)} disabled={deshabilitarOrigen}>
+                <select className={Estilo.selectOrigen} defaultValue="titulo" onChange={event => manejadorFiltradoBd(event)} disabled={deshabilitarOrigen}>
                     <option value="titulo" disabled>Origen</option>
                     <option value="todos">Todos</option>
                     <option value="api">Api</option>
@@ -127,7 +127,7 @@ const Home = () => {
                     })
                 }
 
-                <select defaultValue="titulo" onChange={event =>manejadorOrden(event)}>
+                <select className={Estilo.selectOrden} defaultValue="titulo" onChange={event =>manejadorOrden(event)}>
                     <option value="titulo" disabled>Ordenar</option>
                     <option value="aleatorio">Aleatorio</option>
                     <option value="ascendente">Ascedente</option>

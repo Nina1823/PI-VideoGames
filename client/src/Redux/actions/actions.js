@@ -8,7 +8,8 @@ export const FILTRADO_GENERO = "FILTRADO_GENERO";
 export const FILTRADO_BD =  "FILTRADO_DB";
 export const TODOS_GENEROS = "TODOS_GENEROS";
 export const FILTRADO_NOMBRE = "FILTRADO_NOMBRE";
-export const FILTRADO_CALIFICACION = "FILTRADO_CALIFICACIONss"
+export const FILTRADO_CALIFICACION = "FILTRADO_CALIFICACION"
+export const CREAR_JUEGO = "CREAR_JUEGO";
 
 
 
@@ -88,4 +89,16 @@ export const filtradoCalificacion = (payload) =>{
     return {
         type:FILTRADO_CALIFICACION, payload
     }
+}
+
+export const crearjuego = (dato) =>{
+    return async function(){
+        const respuesta = await axios.post("/videogames/",dato);
+        return respuesta;
+    }
+}
+export const cambiarJuego = () =>{
+    return {
+        type: TODOS_JUEGOS, payload:[] //payload borrarme todos los juegos
+    }   
 }

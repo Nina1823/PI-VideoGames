@@ -4,10 +4,25 @@ import { Link } from "react-router-dom";
 const Landing = () => {
 
     return (
-        <div>
-            <h1>Estamos en Landing</h1>
-            <Link to="/home">Home
-            </Link>
+        <div className={Estilo.info}>
+            <br/>
+           
+            <Link to="/home"><button className={Estilo.btnHome}>Iniciar</button></Link>
+           <br />
+           <div >
+            <h2 className={Estilo.contenido}>En esta página descubriras la información de multiples videojuegos
+                donde podras encontrar cada una de sus caracteristicas e incluso clasificarlos 
+                por mejor / peor y así encontraras el ideal para ti
+            </h2>
+           </div>
+            
+        <h1>sararrararrarrara</h1>
+        <h1>sararrararrarrara</h1>
+        <h1>sararrararrarrara</h1>
+        <h1>sararrararrarrara</h1>
+        <h1>sararrararrarrara</h1>
+        <h5>sararrararrarrara</h5>
+  
         </div>
     )
 }

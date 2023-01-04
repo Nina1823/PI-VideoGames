@@ -1,6 +1,6 @@
 import { TODOS_JUEGOS, ERROR, BUSCAR_JUEGO, DETALLE_JUEGO, TODOS_GENEROS, FILTRADO_GENERO, FILTRADO_BD, FILTRADO_NOMBRE, FILTRADO_CALIFICACION } from "../actions/actions";
-const initialState = {
-    videoJuegos: [],
+const initialState = {//GLOBAL
+    videoJuegos: [], 
     error: "",
     detalleJuego: {},
     generos: [],

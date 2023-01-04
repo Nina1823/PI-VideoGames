@@ -1,0 +1,26 @@
+.btnHome{
+    background-color:  rgba(100, 165, 240, 0.7)  ;
+    border: solid 1px #ddd;
+    font-size: 1.5rem;
+    border-radius: 4rem ;
+    font-family: 'Courier New', Courier, monospace;
+    
+
+}
+
+.info{
+    background-image: url("../../imagenes/fondos-para-páginas-web-6.jpg");
+}
+.contenido{
+
+    display: flex;
+    justify-content: center;
+    color: black;
+    background-color: rgb(167, 235, 212);
+    border-radius: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    width: 20rem;
+   
+
+
+;}

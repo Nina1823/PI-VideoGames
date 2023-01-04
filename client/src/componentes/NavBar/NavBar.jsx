@@ -24,19 +24,22 @@ const NavBar = () => {
         setNombre("");
     }
     return (
-        <div>
+        <div className={Estilo.navbar}>
             <NavLink to="/">
-                <h4>Landing</h4>
+                <button className={Estilo.boton}>←Landing</button>
             </NavLink>
+            <div>
+                <input className={Estilo.inputBuscar} type="text" id="nombre" autoComplete="off" value={nombre} onChange={event => changeHandler(event)} placeholder="Buscar Videojuego..." />
+                <button className={Estilo.boton} onClick={(event) => submitHandler(event)}>Buscar</button>
+            </div>
+            <div >
+                <NavLink to="/formulario">
+                    <button className={Estilo.boton}>Formulario</button>
+                </NavLink>
 
-            <input type="text" id="nombre" autoComplete="off" value={nombre} onChange={event => changeHandler(event)} placeholder="Buscar Videojuego..." />
-            <button onClick={(event) => submitHandler(event)}>Buscar</button>
-
-            <NavLink to="/formulario">
-                <h3>Formulario</h3>
-            </NavLink>
-
-            <button onClick={(event) => recargarComponente(event)}>Recargar</button>
+                <button className={Estilo.boton} onClick={(event) => recargarComponente(event)}>
+                    Recargar</button>
+            </div>
         </div>
         //filtrado--home
         //formulario

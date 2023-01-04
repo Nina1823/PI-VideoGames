@@ -14,8 +14,8 @@ const Paginado = ({ juegosPorPagina, paginaActual, videojuegos, paginado }) => {
                 {
                     numeroPaginas && numeroPaginas.map((numero) => {
                         return (
-                            <li key={numero}>
-                                <span onClick={() => paginado(numero)}> {numero}</span>
+                            <li className={Estilo.Numeroli} key={numero}>
+                                <span className={Estilo.paginado} onClick={() => paginado(numero)}> {numero}</span>
                             </li>
                         )
                     })
