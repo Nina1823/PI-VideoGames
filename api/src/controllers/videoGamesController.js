@@ -12,7 +12,7 @@ module.exports = {
         let necesario = [];
         let infoBd = await Videogame.findAll({ include: Genero })
         let infoApi = await axios.get(url + "?key=" + API);
-
+        //primera pregunta
         resultadoApi = [...infoApi.data.results];
         let siguieteUrl = infoApi.data.next;
 
@@ -29,7 +29,6 @@ module.exports = {
                 juego.genres.map((genero) => resultGen.push({
                     "id": genero.id,
                     "nombre": genero.name.toLowerCase()
-                    
                 }))
                 return resultGen;
             }
@@ -65,6 +64,9 @@ module.exports = {
         //filtrado del videogame exista dentro de los primeros 100
         filtrado = todosJuego.filter( (juego) => juego.id === id )
         if (filtrado.length) {
+            if(id.length>6){
+                return filtrado;
+            }
             let infoApi = await axios.get(url + "/" + id + "?key=" + API);
 
             function encontrarGeneros() {
@@ -104,6 +106,7 @@ module.exports = {
 
     crearNuevoJuego: async function(nuevo){
         const { nombre, descripcion, lanzamiento, calificacion, plataformas, imagen,generos } = nuevo;
+        //no me pasan algo cali
         nuevo.calificacion ? nuevo.calificacion = parseFloat(calificacion): nuevo.calificacion = 0.0
         if(imagen.length === 0){ //sino me pasan img le ponemos esta x2
             nuevo.imagen = "https://www.curn.edu.co/images/ZARINA.jpg"; 

@@ -14,10 +14,12 @@
     border-radius: 4rem ;
     font-family: 'Courier New', Courier, monospace;
     margin-right: 0.7rem;
+    cursor: pointer;
 }
 
 .boton:hover{
     box-shadow: 0 12px 16px black;
+    cursor: pointer;
 }
  
 
@@ -27,4 +29,5 @@
 .inputBuscar{
     border-radius: 1.5rem;
     font-size: 1.2rem;
+    cursor: text;
 }

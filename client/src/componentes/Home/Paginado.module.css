@@ -1,6 +1,7 @@
 .liNumber {
     display: inline-block;
     margin: 0.3em;
+    text-decoration: none;
 }
 .paginado {
     padding: 0.5em;
@@ -9,3 +10,10 @@
     border-radius: 2em;
 }
 
+.ul{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

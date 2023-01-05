@@ -8,24 +8,24 @@ const Paginado = ({ juegosPorPagina, paginaActual, videojuegos, paginado }) => {
     }
     return (
         <nav>
-            <ul>{
-                paginaActual > 1 && <li> <spa onClick={() => paginado(--paginaActual)}>Anterior</spa></li>
+            <div className={Estilo.ul}>{
+                paginaActual > 1 && <li className={Estilo.liNumber}> <span className={Estilo.paginado} onClick={() => paginado(--paginaActual)}>Anterior</span></li>
             }
                 {
                     numeroPaginas && numeroPaginas.map((numero) => {
                         return (
-                            <li className={Estilo.Numeroli} key={numero}>
+                            <div className={Estilo.Numeroli} key={numero}>
                                 <span className={Estilo.paginado} onClick={() => paginado(numero)}> {numero}</span>
-                            </li>
+                            </div>
                         )
                     })
                     
                 }
                 {
-                    paginaActual < numeroPaginas.length && <li><span onClick={()=>paginado(++paginaActual)}>Siguiente</span></li>
+                    paginaActual < numeroPaginas.length && <li className={Estilo.liNumber}><span className={Estilo.paginado} onClick={()=>paginado(++paginaActual)}>Siguiente</span></li>
                 }
 
-            </ul>
+            </div>
         </nav>
     )
 }

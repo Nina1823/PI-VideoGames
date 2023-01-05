@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
     imagen:{
       type:DataTypes.STRING,
-      defaultValue: "https://www.curn.edu.co/images/ZARINA.jpg",
+      defaultValue: "https://www.pngfind.com/pngs/m/645-6457086_logo-de-los-videojuegos-hd-png-download.png",
       validate:{isUrl:true}
     },
     createdInDb:{
@@ -40,7 +40,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       defaultValue:true
     }
-
   }
   ,{timestamps:false}
   );

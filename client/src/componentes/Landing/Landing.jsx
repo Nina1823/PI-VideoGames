@@ -7,21 +7,16 @@ const Landing = () => {
         <div className={Estilo.info}>
             <br/>
            
-            <Link to="/home"><button className={Estilo.btnHome}>Iniciar</button></Link>
+            <Link to="/home"><button className={Estilo.btnHome}>¡ Iniciar aventura !</button></Link>
            <br />
-           <div >
+           <div className={Estilo.divInfo}>
             <h2 className={Estilo.contenido}>En esta página descubriras la información de multiples videojuegos
                 donde podras encontrar cada una de sus caracteristicas e incluso clasificarlos 
                 por mejor / peor y así encontraras el ideal para ti
             </h2>
            </div>
             
-        <h1>sararrararrarrara</h1>
-        <h1>sararrararrarrara</h1>
-        <h1>sararrararrarrara</h1>
-        <h1>sararrararrarrara</h1>
-        <h1>sararrararrarrara</h1>
-        <h5>sararrararrarrara</h5>
+        
   
         </div>
     )

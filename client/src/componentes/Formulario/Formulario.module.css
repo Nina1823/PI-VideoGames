@@ -1,0 +1,62 @@
+.obligatorio{
+    color: red;
+}
+
+.form{
+    background-color: #a7c5d4;
+    border-radius: 2em;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    margin: 1em;
+    padding: 2em;
+    width: 50em;
+    height: 23em;
+    font-family: 'Courier New', Courier, monospace;
+}
+.btnRegresar{
+    background-color: rgba(100, 165, 240, 0.7);
+    border-color: rgba(100, 165, 240, 0.7);
+    font-size: 1.2rem;
+    border-radius: 4rem ;
+    font-family: 'Courier New', Courier, monospace;
+    margin-right: 0.7rem;
+    cursor: pointer;
+    position: relative;
+    top: -30px;
+    left: -365px;
+}
+
+.btnRegresar:hover{
+    box-shadow: 0 12px 16px black;
+    cursor: pointer;
+}
+
+.btnEnviar:hover{
+    box-shadow: 0 12px 16px black;
+    cursor: pointer;
+}
+.btnEnviar{
+    background-color: rgba(100, 165, 240, 0.7);
+    border-color: rgba(100, 165, 240, 0.7);
+    font-size: 1.5rem;
+    border-radius: 4rem ;
+    font-family: 'Courier New', Courier, monospace;
+    margin-right: 0.7rem;
+    cursor: pointer;
+}
+
+
+.b
+.titulo{
+    position: relative;
+    top: -60px;
+}
+.formulario{
+    position: relative;
+    top: -50px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.select, .input{
+    font-family: 'Courier New', Courier, monospace;
+}

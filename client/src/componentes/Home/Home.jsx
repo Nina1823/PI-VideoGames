@@ -144,8 +144,9 @@ const Home = () => {
                             />
                         })
                     }
-                    <Paginado juegosPorPagina={juegosPorPagina} paginaActual={paginaActual} videojuegos={videojuegos.length} paginado={paginado} />
                 </div>
+                <Paginado className={Estilo.paginado} juegosPorPagina={juegosPorPagina} paginaActual={paginaActual} videojuegos={videojuegos.length} paginado={paginado} />
+
             </div>
         )
     } else { //sino hay nah en videogames

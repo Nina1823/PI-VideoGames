@@ -20,7 +20,7 @@ const Detalle = (props) => {
         return <Error></Error>
     } else if (estadoDetalle.hasOwnProperty('id') && (estadoDetalle.id === parseInt(idJuego) || estadoDetalle.id === idJuego)) {
         return (
-
+            <div className={Estilo.princi}>
             <div className={Estilo.info}>
 
                 <NavLink to="/home">
@@ -51,7 +51,7 @@ const Detalle = (props) => {
                 })}</span>
 
             </div>
-            
+            </div>
 
         )
     } else {
