@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { busquedaJuego, todosJuegos } from "../../Redux/actions/actions";
 
-const NavBar = () => {
+const NavBar = ({setPaginaActual}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [nombre, setNombre] = useState("") //UseState estado local
@@ -13,8 +13,10 @@ const NavBar = () => {
         const dato = event.target.value // se me copia el valor del que esta buscando
         setNombre(dato)
     }
-    const submitHandler = (event) => {
-        dispatch(busquedaJuego(nombre))
+    const submitHandler = async(event) => {
+
+        await dispatch(busquedaJuego(nombre))
+        setPaginaActual(1)
     }
 
     const recargarComponente = (event) => {
@@ -41,9 +43,6 @@ const NavBar = () => {
                     Recargar</button>
             </div>
         </div>
-        //filtrado--home
-        //formulario
-        //paginado
 
     )
 }

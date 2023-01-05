@@ -17,7 +17,7 @@ const Home = () => {
     const [orden,setOrden] = useState("");
     const [paginaActual, setPaginaActual] = useState(1);
     const juegosPorPagina = 15;
-    const ultimoJuego = paginaActual * juegosPorPagina;
+    const ultimoJuego = paginaActual * juegosPorPagina; 
     const primerJuego = ultimoJuego - juegosPorPagina;
     const juegosActuales = videojuegos.slice(primerJuego,ultimoJuego) //por cada pagina muestra desde el 1ero y ultimo que haya por pagina
     const paginado = (numeroPagina) => {
@@ -38,16 +38,20 @@ const Home = () => {
     const manejadorFiltradoGen = (event) => {
         if (event.target.value === "todos") {
             dispatch(todosJuegos())
+            
         } else {
             event.preventDefault()
             dispatch(filtradoGenero(event.target.value))
             setSeleccionGenero({ ...seleccionGenero, genero: [event.target.value] }) //modiifco genero
         }
+        setPaginaActual(1) //   que no solo me filtre por la pagina, sino por los 100 
     }
     const manejadorFiltradoBd = (event) =>{
         event.preventDefault()
         dispatch(filtradoBd(event.target.value)) //eveneto, dispara el eveneto, valor que se seleccionó en el select (onChange)  creados/api/orgien
         setSeleccionGenero({...seleccionGenero, existente:[event.target.value] })
+        setPaginaActual(1)
+
     }
 
     const eliminarGenero = (event) => {
@@ -62,12 +66,22 @@ const Home = () => {
         let valor = event.target.value;
         if(valor==="ascendente" || valor==="descendente"){
             dispatch(filtradoNombre(valor))    
+            setPaginaActual(1) //   que no solo me ordene por la pagina, sino por los 100 juegos
+            setOrden(`ordenado${valor}`)
         }
         if(valor=="mejor" || valor==="peor"){
             dispatch(filtradoCalificacion(valor))
+            setPaginaActual(1)
+            setOrden(`ordenadoCalificacion ${valor}`)
+
+
         }
         if(valor==="aleatorio"){
             dispatch(todosJuegos())
+            setPaginaActual(1)
+            setOrden(`aleatorio`)
+
+
         }
     }
     if (error) { // el estado que tiene errores esta vacio
@@ -79,7 +93,7 @@ const Home = () => {
     } else if (videojuegos.length) {
         return (
             <div className={Estilo.nose}>
-                <NavBar />
+                <NavBar setPaginaActual={setPaginaActual}/>
                 <select className={Estilo.selectGen} defaultValue="titulo" onChange={event => manejadorFiltradoGen(event)} disabled={deshabilitadorSelec}>
                     <option value="titulo" disabled> Generos</option>
                     <option value="todos">Todos</option>
@@ -153,7 +167,7 @@ const Home = () => {
         return (
             <>
                 <NavBar />
-                <div><h1>Cargando</h1></div>
+                <div><h1>Cargando...</h1></div>
             </>
         )
     }

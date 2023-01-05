@@ -6,11 +6,11 @@ const initialState = {//GLOBAL
     generos: [],
 }
 
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
+const rootReducer = (state = initialState, action) => {//maneja el estado global
+    switch (action.type) { //type del titulo
         case TODOS_JUEGOS:
             return {
-                ...state,
+                ...state, //mantengo los cambios que ya haya tenido en el estado global
                 videoJuegos: action.payload, //payload donde guardo la info
             };
         case ERROR:
@@ -65,12 +65,12 @@ const rootReducer = (state = initialState, action) => {
             const todosJuegosFN = [...state.videoJuegos];
             const filtradoNombre = action.payload === "ascendente" ? todosJuegosFN.sort((a, b) => {
                 if (a.nombre > b.nombre) {
-                    return 1;
+                    return 1; //la posi
                 }
                 if (b.nombre > a.nombre) {
                     return -1
                 }
-                return 0
+                return 0 //si son = no se cambia
 
             }) : todosJuegosFN.sort((a, b) => { //ya que es descendente 
                 if (a.nombre > b.nombre) {

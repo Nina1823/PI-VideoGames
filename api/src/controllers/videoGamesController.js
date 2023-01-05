@@ -37,7 +37,7 @@ module.exports = {
                 "nombre": juego.name.toLowerCase(),
                 "imagen": juego.background_image,
                 "generos": encontrarGeneros(),
-                "calificacion": juego.rating
+                "calificacion": juego.rating// por ordamiento ene l front
             })
         })
         if (name) {

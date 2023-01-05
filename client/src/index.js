@@ -11,7 +11,7 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3001";
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store}> {/* //provee a toda la pagina del estado global */}
       <BrowserRouter>
         <App />
       </BrowserRouter>

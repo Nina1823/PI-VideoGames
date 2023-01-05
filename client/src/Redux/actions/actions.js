@@ -41,7 +41,7 @@ export const todosGeneros = () =>{
 export const cambiarError= ()=>{
     return{
         type: ERROR,
-        payload: false
+        payload: false //en el global de error esta false
         
     }
 }
