@@ -69,7 +69,8 @@ const rootReducer = (state = initialState, action) => {//maneja el estado global
                 }
                 if (b.nombre > a.nombre) {
                     return -1
-                }
+                }                        
+                
                 return 0 //si son = no se cambia
 
             }) : todosJuegosFN.sort((a, b) => { //ya que es descendente 

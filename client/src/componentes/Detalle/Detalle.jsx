@@ -55,7 +55,7 @@ const Detalle = (props) => {
 
         )
     } else {
-        return (<h3>Cargando</h3>)
+        return (<h3 className={Estilo.cargando}>Cargando</h3>)
     }
 
 }

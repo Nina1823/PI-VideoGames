@@ -10,9 +10,10 @@ const Landing = () => {
             <Link to="/home"><button className={Estilo.btnHome}>¡ Iniciar aventura !</button></Link>
            <br />
            <div className={Estilo.divInfo}>
-            <h2 className={Estilo.contenido}>En esta página descubriras la información de multiples videojuegos
-                donde podras encontrar cada una de sus caracteristicas e incluso clasificarlos 
+            <h2 className={Estilo.contenido}>En esta página descubrirás la información de múltiples videojuegos
+                donde podrás encontrar cada una de sus características e incluso clasificarlos 
                 por mejor / peor y así encontraras el ideal para ti
+
             </h2>
            </div>
             

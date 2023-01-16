@@ -12,6 +12,14 @@
     font-family: 'Courier New', Courier, monospace;
 
 }
+.cargando{
+    background-size: cover;
+    background-color: #212F3D;
+    color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 .imagenJuego{
     position: relative;
      width: 25em;

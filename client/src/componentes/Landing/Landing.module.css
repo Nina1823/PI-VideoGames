@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 .info{
-    background-image: url("../../imagenes/fondos-para-páginas-web-6.jpg");
+    background-image: url("https://i.blogs.es/8e4885/maxresdefault/1366_2000.jpeg");
     position: absolute;
     background-attachment: fixed;
     background-size: cover;
@@ -30,11 +30,15 @@
 
     display: flex;
     justify-content: center;
-    color: black;
-    background-color: rgb(167, 235, 212);
+   
+    background-color: #212F3D;
+    opacity: 0.6;
     border-radius: 1em;
     font-family: 'Courier New', Courier, monospace;
     width: 20rem;
+    color: white;   
+    font-size: 1.2rem;
+    margin: auto;
 
 }
 .divInfo{
