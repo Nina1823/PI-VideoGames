@@ -8,7 +8,9 @@ import { Provider } from 'react-redux';
 import store from './Redux/store/store';
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3001";
+//axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://pi-videogames-production-9a61.up.railway.app/";
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}> {/* //provee a toda la pagina del estado global */}
